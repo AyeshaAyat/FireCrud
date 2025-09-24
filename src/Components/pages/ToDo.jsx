@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
+import { getDatabase, push, ref, set } from "firebase/database";
 const ToDo = () => {
-  const [task, setTask] =useState("");
-const [taskError, setTaskError]= useState("")
-  const handleTaskInput=(e)=>{
-    setTask(e.target.value)
-  }
-  const handleTaskBtn=()=>{
+  const [task, setTask] = useState("");
+  const [taskError, setTaskError] = useState("");
+  const db = getDatabase();
+  const handleTaskInput = (e) => {
+    setTask(e.target.value);
+  };
+  const handleTaskBtn = () => {
     if (!task) {
-      setTaskError("Task is missing")
+      setTaskError("Task is missing");
+    } else {
+      set(
+        push(ref(db, "taskcollection/")),
+        {
+          name: task,
+        }
+      )
+          .then(()=>alert("hoyeche"))
+          .catch(()=>taskError)
+       
     }
-    else(
-      alert(task)
-    )
-  }
+  };
   return (
     <>
       <div className="bg-blue-300 py-40">
@@ -23,20 +32,21 @@ const [taskError, setTaskError]= useState("")
               To-Do List
             </label>
             <input
-            onChange={handleTaskInput}
+              onChange={handleTaskInput}
               type="email"
               className="bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="add task here"
             />
-          {taskError&&
-          <>
-          <div className="flex">
-
-              <MdErrorOutline className="text-[18px] mt-0.5 ml-2 text-red-600 " />
-            <p className="text-[14px] text-red-600 ml-0.5 ">{taskError}</p>
-          </div>
-          </>
-          }
+            {taskError && (
+              <>
+                <div className="flex">
+                  <MdErrorOutline className="text-[18px] mt-0.5 ml-2 text-red-600 " />
+                  <p className="text-[14px] text-red-600 ml-0.5 ">
+                    {taskError}
+                  </p>
+                </div>
+              </>
+            )}
           </div>
           <button
             onClick={handleTaskBtn}
