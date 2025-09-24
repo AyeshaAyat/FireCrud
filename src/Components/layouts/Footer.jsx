@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Container from "../Container";
 
 const Footer = () => {
   return (
-    <div className='bg-green-400 py-5'>Footer</div>
-  )
-}
+<>
+<Container>
 
-export default Footer
+<div className="bg-black text-white text-center py-5">FOOTER</div>
+</Container>
+</>
+  );
+};
+
+export default Footer;

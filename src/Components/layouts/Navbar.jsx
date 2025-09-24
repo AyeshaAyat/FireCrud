@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Container from "../Container";
 
 const Navbar = () => {
   return (
     <>
+    <Container>
+
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
@@ -52,6 +55,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+              </Container>
     </>
   );
 };
