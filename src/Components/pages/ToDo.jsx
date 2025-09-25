@@ -18,7 +18,7 @@ const ToDo = () => {
       set(push(ref(db, "taskcollection/")), {
         name: task,
       })
-        .then(() => alert("hoyeche"))
+        .then(() => task)
         .catch(() => taskError);
     }
   };
@@ -72,21 +72,18 @@ const ToDo = () => {
 
         {/* -----------------todopageStart---------------- */}
 
-        <div className="bg-cyan-700 p-1   flex ">
-
-          {viewTask.map((item) => (
-            <div className="bg-green-300  w-[573px] h-[600px] ">
-            <h1 className="italic text-4xl font-serif ml-6 mt-6   text-black ">
-              Academics:
+        <div className="bg-cyan-700 p-1   flex">
+            <div className="bg-green-300  w-[573px] h-[600px]  ">
+              <h1 className="italic text-4xl font-serif ml-6 mt-6   text-black ">
+                Academics:
               </h1>
-            
-            <div className="py-6 mt-3 bg-white">
-              {item.name}
-
-            </div>
-          </div>
-
+          {viewTask.map((item) => (
+              <div className="py-6 mt-3 bg-white ">
+                <div className="1">{item.name}</div>
+               
+              </div>
           ))}
+            </div>
           <div className="bg-yellow-200 w-[573px] h-[600px] ">
             <h1 className="italic text-[35px] font-serif ml-6 mt-6  text-black ">
               MERN:
